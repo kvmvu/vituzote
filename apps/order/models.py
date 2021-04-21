@@ -8,6 +8,7 @@ class Order(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
+    # phone = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=100)
     place = models.CharField(max_length=100)
@@ -24,7 +25,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='items', on_delete=models.DO_NOTHING)
-    price = models.FloatField()
+    price = models.DecimalField()
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
